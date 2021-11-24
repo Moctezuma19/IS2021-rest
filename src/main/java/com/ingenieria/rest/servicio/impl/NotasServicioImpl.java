@@ -15,10 +15,11 @@ public class NotasServicioImpl implements NotasServicio {
     @Autowired
     NotasRepositorio notasRepositorio;
 
-    public Nota agrega(String texto) {
+    public Nota agrega(String texto, String autor) {
         Nota nota = new Nota();
         nota.setNota(texto);
         nota.setCreada(new Timestamp(System.currentTimeMillis()));
+        nota.setAutor(autor);
         return notasRepositorio.save(nota);
     }
 

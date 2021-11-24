@@ -1,30 +1,25 @@
 package com.ingenieria.rest.modelo;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Nota")
-public class Nota {
+@Table(name = "Usuario")
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idNota;
+    private Integer idUsuario;
 
-    @Column(name = "nota")
-    private String nota;
+    @Column(name = "nombre")
+    private String nombre;
 
-    @Column(name = "creada")
-    private Timestamp creada;
-
-    @Column(name = "autor")
-    private String autor;
-
+    @Column(name = "clave", length = 60)
+    private String clave;
 }

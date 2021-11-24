@@ -12,7 +12,8 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-public class Controlador {
+@RequestMapping("/nota")
+public class ControladorNota {
 
     @Autowired
     NotasServicio notasServicio;
@@ -24,7 +25,7 @@ public class Controlador {
     @PutMapping(value = "/agrega", produces = "application/json",
             consumes = "application/json")
     public Map<String, Object> agrega(@RequestBody Map<String, Object> response) {
-        Nota nota = notasServicio.agrega((String) response.get("nota"));
+        Nota nota = notasServicio.agrega((String) response.get("nota"), (String) response.get("autor"));
         Map<String, Object> resp = new HashMap<>();
         resp.put("data", nota);
         resp.put("status", "success");
