@@ -5,6 +5,8 @@ import com.ingenieria.rest.dto.UsuarioDto;
 import com.ingenieria.rest.modelo.Usuario;
 import com.ingenieria.rest.repositorio.UsuariosRepositorio;
 import com.ingenieria.rest.seguridad.JWTProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ import java.util.Map;
 @RequestMapping("/autenticacion")
 public class ControladorAutenticacion {
 
+    private final static Logger logger = LoggerFactory.getLogger(ControladorAutenticacion.class);
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -36,8 +40,9 @@ public class ControladorAutenticacion {
 
     @ResponseBody
     @CrossOrigin
-    @RequestMapping(path = "/generate-token", method = RequestMethod.POST)
+    @RequestMapping(path = "/genera-token", method = RequestMethod.POST)
     public ResponseEntity<?> generateToken(@RequestBody LoginUserDto loginUser) {
+        logger.info("Intento de inicio de sesion de " + loginUser);
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginUser.getNombre(),
